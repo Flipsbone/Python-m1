@@ -1,0 +1,18 @@
+Name Mangling
+
+variable	Public	Open bar. Utilise-la partout.
+_variable	Protégé	Convention uniquement , signal visuel. "Tu peux accéder à cette donnée, mais si tu le fais et que je change mon code demain, c'est ton problème si ton programme casse".
+__variable	Privé	Name Mangling. L'interpréteur renomme la variable pour éviter les collisions.
+
+Si ClasseB hérite de ClasseA, et que les deux ont un __id, Python créera _ClasseA__id et _ClasseB__id. Ils ne se marcheront pas sur les pieds.
+
+Transformation : L'interpréteur remplace __nom_variable par _NomClasse__nom_variable.
+Encapsulation : Cela rend l'accès direct depuis l'extérieur de la classe plus difficile, mais pas impossible.
+					print(mon_coffre._CoffreFort__code)
+
+Pourquoi l'utiliser ?
+    Héritage propre : Garantit que les attributs "privés" d'une classe de base ne sont pas modifiés par les classes enfants.
+
+    Lisibilité : Indique clairement aux autres développeurs que cette variable est destinée à un usage interne uniquement.
+
+
