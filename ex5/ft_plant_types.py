@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 class Plant:
     def __init__(self, name: str, height: int, age: int):
         self.name = name.capitalize()
@@ -27,11 +28,20 @@ class Plant:
     def get_age(self):
         return self.__age
 
+    def display_status(self):
+        print(f"{self.name} ({type(self).__name__}): {self.get_height()}cm,"
+              f" {self.get_age()} days, ", end="")
+
 
 class Flower(Plant):
     def __init__(self, name: str, height: int, age: int, color: str):
         super().__init__(name, height, age)
         self.color = color
+
+    def display_status(self):
+        super().display_status()
+        print(f"{self.color} color")
+        self.bloom()
 
     def bloom(self):
         print(f"{self.name} is blooming beautifully!\n")
@@ -53,8 +63,13 @@ class Tree(Plant):
     def get_trunk_diameter(self):
         return self.__trunk_diameter
 
-    def produce_shade(self, trunck_diameter: int):
-        d_trunk_m = trunck_diameter / 100
+    def display_status(self):
+        super().display_status()
+        print(f"{self.get_trunk_diameter()}cm diameter")
+        self.produce_shade()
+
+    def produce_shade(self):
+        d_trunk_m = self.__trunk_diameter / 100
         d_crown_m = d_trunk_m * 20
         radius_m = d_crown_m / 2
         shade = 3.14 * (radius_m ** 2)
@@ -70,21 +85,22 @@ class Vegetable(Plant):
         self.harvest_season = harvest_season
         self.nutritional_value = nutritional_value.capitalize()
 
+    def display_status(self):
+        super().display_status()
+        print(f"{self.harvest_season} harvest")
+        print(f"{self.name} is rich in vitamin {self.nutritional_value}\n")
+
 
 if __name__ == "__main__":
     print("===  Garden Plant Types ===\n")
-    rose = Flower("rose", 25, 30, "red")
-    print(
-        f"{rose.name} (Flower): {rose.get_height()}cm, {rose.get_age()} days, "
-        f"{rose.color} color")
-    rose.bloom()
-    oak = Tree("oak", 500, 1825, 50)
-    print(
-        f"{oak.name} (Tree): {oak.get_height()}cm, {oak.get_age()} days, "
-        f"{oak.get_trunk_diameter()} diameter")
-    oak.produce_shade(oak.get_trunk_diameter())
-    tomato = Vegetable("tomato", 80, 90, "summer", "c")
-    print(
-        f"{tomato.name} (Vegetable): {tomato.get_height()}cm, "
-        f"{tomato.get_age()} days, {tomato.harvest_season} harvest\n"
-        f"{tomato.name} is rich in vitamin {tomato.nutritional_value}")
+    garden_center = [
+        Flower("rose", 25, 30, "red"),
+        Tree("oak", 500, 1825, 50),
+        Vegetable("tomato", 80, 90, "summer", "c"),
+        Flower("lily", 15, 12, "white"),
+        Tree("pine", 300, 730, 20),
+        Vegetable("bean", 40, 45, "spring", "b"),
+    ]
+
+    for my_plant in garden_center:
+        my_plant.display_status()
