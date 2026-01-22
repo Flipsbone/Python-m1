@@ -1,27 +1,32 @@
 #!/usr/bin/env python3
 
 class Plant:
-    def __init__(self, name: str, height: int, age: int):
+    """
+    Blueprint representing a plant in the garden.
+    Attributes:
+        name (str): The species name of the plant.
+        height (int): The height in centimeters.
+        age (int): The age in days.
+    """
+    def __init__(self, name: str, height: int, age: int) -> None:
         self.name = name
         self.height = height
         self.age = age
 
 
 if __name__ == "__main__":
-    rose = Plant("Rose", 25, 30)
-    oak = Plant("Oak", 200, 365)
-    cactus = Plant("Cactus", 5, 90)
-    sunflower = Plant("Sunflower", 80, 45)
-    fern = Plant("Fern", 15, 120)
+    garden_center = [
+        ("Rose", 25, 30),
+        ("Oak", 200, 365),
+        ("Cactus", 5, 90),
+        ("Sunflower", 80, 45),
+        ("Fern", 15, 120),
+    ]
 
-    garden_center = [rose, oak, cactus, sunflower, fern]
-
-    count = 0
-    for item in garden_center:
-        count += 1
-
+    total_len = len(garden_center)
+    myplant = [Plant(name, height, age) for name, height, age in garden_center]
     print("=== Plant Factory Output ===")
-    for i in range(count):
-        plt = garden_center[i]
+    for k in range(total_len):
+        plt = myplant[k]
         print(f"Created: {plt.name} ({plt.height}cm, {plt.age} days)")
-    print("\nTotal plants created:", count)
+    print("\nTotal plants created:", total_len)

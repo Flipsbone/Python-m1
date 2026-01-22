@@ -1,58 +1,88 @@
 #!/usr/bin/env python3
+"""Module defining a hierarchy of specialized garden plants."""
+
 
 class Plant:
-    def __init__(self, name: str, height: int, age: int):
+    """
+    Blueprint for a plant that can grow and age.
+    Attributes:
+        name (str): The species name of the plant.
+        height (int): The height in centimeters.
+        age (int): The age in days.
+    """
+    def __init__(self, name: str, height: int, age: int) -> None:
         self.name = name.capitalize()
+        self.__height = 0
+        self.__age = 0
         self.set_height(height)
         self.set_age(age)
 
-    def set_height(self, height: int):
+    def set_height(self, height: int) -> None:
+        """Validate and set height if non-negative."""
         if height < 0:
-            raise ValueError(
-                    "Invalid operation attempted: "
-                    f"height {height}cm [REJECTED]")
-        else:
-            self.__height = height
+            print(
+                "Invalid operation attempted: "
+                f"height {height}cm [REJECTED]")
 
-    def set_age(self, age: int):
+    def set_age(self, age: int) -> None:
+        """Validate and set age if non-negative."""
         if age < 0:
-            raise ValueError(
-                    f"Invalid operation attempted: age {age}"
-                    "days [REJECTED]")
+            print(f"Invalid operation attempted: age {age}days [REJECTED]")
+            print("Security: Negative age rejected\n")
         else:
             self.__age = age
 
-    def get_height(self):
+    def get_height(self) -> int:
+        """Return the protected height."""
         return self.__height
 
-    def get_age(self):
+    def get_age(self) -> int:
+        """Return the protected age."""
         return self.__age
 
-    def display_status(self):
+    def display_status(self) -> None:
+        """Display current status with exact subject formatting."""
         print(f"{self.name} ({type(self).__name__}): {self.get_height()}cm,"
               f" {self.get_age()} days, ", end="")
 
 
 class Flower(Plant):
-    def __init__(self, name: str, height: int, age: int, color: str):
+    """
+    Specialized plant type that can bloom and has a color.
+    Attributes:
+        color (str): The color of the plant.
+        Inherited attributes (name,height,age) are managed by the Plant class.
+    """
+    def __init__(self, name: str, height: int, age: int, color: str) -> None:
         super().__init__(name, height, age)
         self.color = color
 
-    def display_status(self):
+    def display_status(self) -> None:
+        """Display flower-specific status and color and blooming action."""
         super().display_status()
         print(f"{self.color} color")
         self.bloom()
 
-    def bloom(self):
+    def bloom(self) -> None:
+        """Print a message indicating the flower is blooming."""
         print(f"{self.name} is blooming beautifully!\n")
 
 
 class Tree(Plant):
-    def __init__(self, name: str, height: int, age: int, trunk_diameter: int):
+    """
+    Specialized plant type that provides shade based on trunk diameter.
+    Attributes:
+        trunk_diameter (int): The trunk of the tree.
+        Inherited attributes (name,height,age) are managed by the Plant class.
+    """
+    def __init__(
+            self, name: str, height: int, age: int,
+            trunk_diameter: int) -> None:
         super().__init__(name, height, age)
         self.set_trunk_diameter(trunk_diameter)
 
-    def set_trunk_diameter(self, trunk_diameter: int):
+    def set_trunk_diameter(self, trunk_diameter: int) -> None:
+        """Validate and set trunk diameter."""
         if trunk_diameter < 0:
             raise ValueError(
                         "Invalid operation attempted: "
@@ -60,15 +90,18 @@ class Tree(Plant):
         else:
             self.__trunk_diameter = trunk_diameter
 
-    def get_trunk_diameter(self):
+    def get_trunk_diameter(self) -> int:
+        """Return the protected trunk diameter."""
         return self.__trunk_diameter
 
-    def display_status(self):
+    def display_status(self) -> None:
+        """Display tree-specific status including diameter and shade area."""
         super().display_status()
         print(f"{self.get_trunk_diameter()}cm diameter")
         self.produce_shade()
 
-    def produce_shade(self):
+    def produce_shade(self) -> None:
+        '''Calculate and print the shade area provided by the tree.'''
         d_trunk_m = self.__trunk_diameter / 100
         d_crown_m = d_trunk_m * 20
         radius_m = d_crown_m / 2
@@ -77,15 +110,23 @@ class Tree(Plant):
 
 
 class Vegetable(Plant):
+    """
+    Specialized plant type representing food crops.
+        Attributes:
+        harvest_season (str): The season when the vegetable is harvested.
+        nutritional_value (str): The key vitamin provided by the vegetable.
+        Inherited attributes (name,height,age) are managed by the Plant class.
+    """
     def __init__(
         self, name: str, height: int,
         age: int, harvest_season: str, nutritional_value: str
-    ):
+    ) -> None:
         super().__init__(name, height, age)
         self.harvest_season = harvest_season
         self.nutritional_value = nutritional_value.capitalize()
 
-    def display_status(self):
+    def display_status(self) -> None:
+        """Display vegetable-specific status and harvest season + nutrition."""
         super().display_status()
         print(f"{self.harvest_season} harvest")
         print(f"{self.name} is rich in vitamin {self.nutritional_value}\n")

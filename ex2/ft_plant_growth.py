@@ -1,19 +1,32 @@
 #!/usr/bin/env python3
+"""Module simulating plant growth over a week."""
+
 
 class Plant:
-    def __init__(self, name: str, height: int, age: int):
+    """
+    Blueprint for a plant that can grow and age.
+    Attributes:
+        name (str): The species name of the plant.
+        height (int): The height in centimeters.
+        age (int): The age in days.
+        start_height (int): Track first value of height
+    """
+    def __init__(self, name: str, height: int, age: int) -> None:
         self.name = name
         self.height = height
         self.age = age
         self.start_height = height
 
-    def update_age(self):
+    def update_age(self) -> None:
+        """Increment the plant's age by one day."""
         self.age += 1
 
-    def grow(self, add_cm):
+    def grow(self, add_cm) -> None:
+        """Increase the plant's height."""
         self.height += add_cm
 
-    def get_info(self):
+    def get_info(self) -> str:
+        """Return a formatted string of the plant's status."""
         return f"{self.name}: {self.height}cm, {self.age} days old"
 
 
@@ -23,8 +36,9 @@ if __name__ == "__main__":
         if day == 1 or day == 7:
             print(f"=== Day {day} ===")
             print(rose.get_info())
-        rose.grow(1)
-        rose.update_age()
+        if day < 7:
+            rose.grow(1)
+            rose.update_age()
 
     total_height = rose.height - rose.start_height
     print(f"Growth this week: + {total_height}cm")

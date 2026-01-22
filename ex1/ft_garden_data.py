@@ -1,21 +1,34 @@
 #!/usr/bin/env python3
+"""Module to manage and display garden plant data."""
+
 
 class Plant:
-    def __init__(self, name: str, height: int, age: int):
+    """
+    Blueprint representing a plant in the garden.
+    Attributes:
+        name (str): The species name of the plant.
+        height (int): The height in centimeters.
+        age (int): The age in days.
+    """
+    def __init__(self, name: str, height: int, age: int) -> None:
+        """
+        Initialize a new Plant .
+        """
         self.name = name
         self.height = height
         self.age = age
 
-
-def display(plant: Plant) -> None:
-    print(f"{plant.name}: {plant.height}cm, {plant.age} days old")
+    def display(self) -> None:
+        """Print the plant's information in the required format."""
+        print(f"{self.name}: {self.height}cm, {self.age} days old")
 
 
 if __name__ == "__main__":
     print("=== Garden Plant Registry ===")
-    rose = Plant("Rose", 25, 30)
-    sunflower = Plant("Sunflower", 80, 45)
-    cactus = Plant("Cactus", 15, 120)
-    display(rose)
-    display(sunflower)
-    display(cactus)
+    garden_center = [
+        Plant("Rose", 25, 30),
+        Plant("Sunflower", 80, 45),
+        Plant("Cactus", 15, 120),
+    ]
+    for my_plant in garden_center:
+        my_plant.display()
