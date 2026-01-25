@@ -12,6 +12,12 @@ class Plant:
         start_height (int): Track first value of height
     """
     def __init__(self, name: str, height: int, age: int) -> None:
+        """Initialize a new Plant instance.
+        Args:
+            name (str): The species name of the plant.
+            height (int): The height in centimeters.
+            age (int): The age in days.
+        """
         self.name = name
         self.height = height
         self.age = age
@@ -22,7 +28,10 @@ class Plant:
         self.age += 1
 
     def grow(self, add_cm) -> None:
-        """Increase the plant's height."""
+        """Increase the plant's height.
+        Args:
+            add_cm (int): The number of centimeters to add to the height.
+        """
         self.height += add_cm
 
     def get_info(self) -> str:

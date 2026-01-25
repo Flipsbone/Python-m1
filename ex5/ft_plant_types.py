@@ -11,6 +11,12 @@ class Plant:
         age (int): The age in days.
     """
     def __init__(self, name: str, height: int, age: int) -> None:
+        """Initialize plant and set initial values through secure methods.
+        Args:
+            name (str): The species name of the plant.
+            height (int): The height in centimeters.
+            age (int): The age in days.
+        """
         self.name = name.capitalize()
         self.__height = 0
         self.__age = 0
@@ -18,14 +24,20 @@ class Plant:
         self.set_age(age)
 
     def set_height(self, height: int) -> None:
-        """Validate and set height if non-negative."""
+        """Validate and set height if non-negative.
+        Args:
+            height (int): The height in centimeters.
+        """
         if height < 0:
             print(
                 "Invalid operation attempted: "
                 f"height {height}cm [REJECTED]")
 
     def set_age(self, age: int) -> None:
-        """Validate and set age if non-negative."""
+        """Validate and set age if non-negative.
+        Args:
+            age (int): The age in days.
+        """
         if age < 0:
             print(f"Invalid operation attempted: age {age}days [REJECTED]")
             print("Security: Negative age rejected\n")
@@ -54,7 +66,21 @@ class Flower(Plant):
         Inherited attributes (name,height,age) are managed by the Plant class.
     """
     def __init__(self, name: str, height: int, age: int, color: str) -> None:
+        """Initialize flower with color and inherited plant attributes.
+        Args:
+            name (str): The species name of the plant.
+            height (int): The height in centimeters.
+            age (int): The age in days.
+            color (str): The color of the plant.
+        """
         super().__init__(name, height, age)
+        """ Initialize flower with color and inherited plant attributes.
+         Args:
+            name (str): The species name of the plant.
+            height (int): The height in centimeters.
+            age (int): The age in days.
+            color (str): The color of the plant.
+         """
         self.color = color
 
     def display_status(self) -> None:
@@ -78,11 +104,28 @@ class Tree(Plant):
     def __init__(
             self, name: str, height: int, age: int,
             trunk_diameter: int) -> None:
+        """Initialize tree with trunk diameter and inherited plant attributes.
+        Args:
+            name (str): The species name of the plant.
+            height (int): The height in centimeters.
+            age (int): The age in days.
+            trunk_diameter (int): The trunk of the tree.
+        """
         super().__init__(name, height, age)
+        """ Initialize tree with trunk diameter and inherited plant attributes.
+         Args:
+            name (str): The species name of the plant.
+            height (int): The height in centimeters.
+            age (int): The age in days.
+            trunk_diameter (int): The trunk of the tree.
+         """
         self.set_trunk_diameter(trunk_diameter)
 
     def set_trunk_diameter(self, trunk_diameter: int) -> None:
-        """Validate and set trunk diameter."""
+        """Validate and set trunk diameter.
+        Args:
+            trunk_diameter (int): The trunk of the tree.
+        """
         if trunk_diameter < 0:
             raise ValueError(
                         "Invalid operation attempted: "
@@ -121,7 +164,25 @@ class Vegetable(Plant):
         self, name: str, height: int,
         age: int, harvest_season: str, nutritional_value: str
     ) -> None:
+        """Initialize vegetable with harvest season, nutrition, and inherited
+        plant attributes.
+        Args:
+            name (str): The species name of the plant.
+            height (int): The height in centimeters.
+            age (int): The age in days.
+            harvest_season (str): The season when the vegetable is harvested.
+            nutritional_value (str): The key vitamin provided by the vegetable.
+        """
         super().__init__(name, height, age)
+        """ Initialize vegetable with harvest season, nutrition, and inherited
+         plant attributes.
+         Args:
+            name (str): The species name of the plant.
+            height (int): The height in centimeters.
+            age (int): The age in days.
+            harvest_season (str): The season when the vegetable is harvested.
+            nutritional_value (str): The key vitamin provided by the vegetable.
+         """
         self.harvest_season = harvest_season
         self.nutritional_value = nutritional_value.capitalize()
 

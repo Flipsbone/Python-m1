@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""This module defines a Plant class and demonstrates creating multiple plant
+instances using a list comprehension."""
+
 
 class Plant:
     """
@@ -9,6 +12,12 @@ class Plant:
         age (int): The age in days.
     """
     def __init__(self, name: str, height: int, age: int) -> None:
+        """Initialize a new Plant instance.
+        Args:
+            name (str): The species name of the plant.
+            height (int): The height in centimeters.
+            age (int): The age in days.
+        """
         self.name = name
         self.height = height
         self.age = age

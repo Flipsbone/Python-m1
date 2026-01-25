@@ -11,7 +11,12 @@ class SecurePlant:
         age (int): The age in days.
     """
     def __init__(self, name: str, height: int, age: int) -> None:
-        """Initialize plant and set initial values through secure methods."""
+        """Initialize plant and set initial values through secure methods.
+        Args:
+            name (str): The species name of the plant.
+            height (int): The height in centimeters.
+            age (int): The age in days.
+        """
         print("Plant created:", name.capitalize())
         self.name = name.capitalize()
         self.__height = 0
@@ -20,7 +25,10 @@ class SecurePlant:
         self.set_age(age)
 
     def set_height(self, height: int) -> None:
-        """Validate and set height if non-negative."""
+        """Validate and set height if non-negative.
+        Args:
+            height (int): The height in centimeters.
+        """
         if height < 0:
             print(
                 "Invalid operation attempted: "
@@ -35,7 +43,10 @@ class SecurePlant:
         return self.__height
 
     def set_age(self, age: int) -> None:
-        """Validate and set age if non-negative."""
+        """Validate and set age if non-negative.
+        Args:
+            age (int): The age in days.
+        """
         if age < 0:
             print(f"Invalid operation attempted: age {age}days [REJECTED]")
             print("Security: Negative age rejected\n")

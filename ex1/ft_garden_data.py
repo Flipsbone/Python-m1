@@ -12,7 +12,11 @@ class Plant:
     """
     def __init__(self, name: str, height: int, age: int) -> None:
         """
-        Initialize a new Plant .
+        Initialize a new Plant instance.
+        Args:
+            name (str): The species name of the plant.
+            height (int): The height in centimeters.
+            age (int): The age in days.
         """
         self.name = name
         self.height = height
