@@ -10,7 +10,7 @@ class SecurePlant:
         height (int): The height in centimeters.
         age (int): The age in days.
     """
-    def __init__(self, name: str, height: int, age: int) -> None:
+    def __init__(self, name: str, height: int = 0, age: int = 0) -> None:
         """Initialize plant and set initial values through secure methods.
         Args:
             name (str): The species name of the plant.
@@ -19,8 +19,6 @@ class SecurePlant:
         """
         print("Plant created:", name.capitalize())
         self.name = name.capitalize()
-        self.__height = 0
-        self.__age = 0
         self.set_height(height)
         self.set_age(age)
 
@@ -67,5 +65,5 @@ class SecurePlant:
 if __name__ == "__main__":
     print("=== Garden Security System ===")
     flower = SecurePlant("rose", 25, 30)
-    flower.set_height()
+    flower.set_height(-5)
     flower.display_status()

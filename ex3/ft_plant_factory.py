@@ -23,8 +23,12 @@ class Plant:
         self.age = age
 
 
+def ft_plant_factory(name: str, height: int, age: int) -> Plant:
+    return Plant(name, height, age)
+
+
 if __name__ == "__main__":
-    garden_center = [
+    garden = [
         ("Rose", 25, 30),
         ("Oak", 200, 365),
         ("Cactus", 5, 90),
@@ -32,10 +36,12 @@ if __name__ == "__main__":
         ("Fern", 15, 120),
     ]
 
-    total_len = len(garden_center)
-    myplant = [Plant(name, height, age) for name, height, age in garden_center]
+    total_len = len(garden)
+    plants = [
+        ft_plant_factory(name, height, age) for name, height, age in garden
+        ]
     print("=== Plant Factory Output ===")
-    for k in range(total_len):
-        plt = myplant[k]
-        print(f"Created: {plt.name} ({plt.height}cm, {plt.age} days)")
+    for i in range(total_len):
+        print(f"Created: {plants[i].name} ({plants[i].height}cm, "
+              f"{plants[i].age} days)")
     print("\nTotal plants created:", total_len)

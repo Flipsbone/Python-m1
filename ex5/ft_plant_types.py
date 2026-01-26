@@ -10,7 +10,7 @@ class Plant:
         height (int): The height in centimeters.
         age (int): The age in days.
     """
-    def __init__(self, name: str, height: int, age: int) -> None:
+    def __init__(self, name: str, height: int = 0, age: int = 0) -> None:
         """Initialize plant and set initial values through secure methods.
         Args:
             name (str): The species name of the plant.
@@ -18,8 +18,6 @@ class Plant:
             age (int): The age in days.
         """
         self.name = name.capitalize()
-        self.__height = 0
-        self.__age = 0
         self.set_height(height)
         self.set_age(age)
 
@@ -32,6 +30,8 @@ class Plant:
             print(
                 "Invalid operation attempted: "
                 f"height {height}cm [REJECTED]")
+        else:
+            self.__height = height
 
     def set_age(self, age: int) -> None:
         """Validate and set age if non-negative.
@@ -126,11 +126,7 @@ class Tree(Plant):
         Args:
             trunk_diameter (int): The trunk of the tree.
         """
-        if trunk_diameter < 0:
-            raise ValueError(
-                        "Invalid operation attempted: "
-                        f"diameter {trunk_diameter}cm [REJECTED]")
-        else:
+        if trunk_diameter > 0:
             self.__trunk_diameter = trunk_diameter
 
     def get_trunk_diameter(self) -> int:

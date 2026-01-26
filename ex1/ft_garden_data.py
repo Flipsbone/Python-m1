@@ -29,10 +29,10 @@ class Plant:
 
 if __name__ == "__main__":
     print("=== Garden Plant Registry ===")
-    garden_center = [
+    list_plants = [
         Plant("Rose", 25, 30),
         Plant("Sunflower", 80, 45),
         Plant("Cactus", 15, 120),
     ]
-    for my_plant in garden_center:
-        my_plant.display()
+    for plant in list_plants:
+        plant.display()

@@ -11,7 +11,7 @@ class Plant:
         age (int): The age in days.
         start_height (int): Track first value of height
     """
-    def __init__(self, name: str, height: int, age: int) -> None:
+    def __init__(self, name: str, height: int, start_age: int) -> None:
         """Initialize a new Plant instance.
         Args:
             name (str): The species name of the plant.
@@ -20,14 +20,14 @@ class Plant:
         """
         self.name = name
         self.height = height
-        self.age = age
+        self.start_age = start_age
         self.start_height = height
 
-    def update_age(self) -> None:
+    def age(self) -> None:
         """Increment the plant's age by one day."""
-        self.age += 1
+        self.start_age += 1
 
-    def grow(self, add_cm) -> None:
+    def grow(self, add_cm: int = 1) -> None:
         """Increase the plant's height.
         Args:
             add_cm (int): The number of centimeters to add to the height.
@@ -36,7 +36,7 @@ class Plant:
 
     def get_info(self) -> str:
         """Return a formatted string of the plant's status."""
-        return f"{self.name}: {self.height}cm, {self.age} days old"
+        return f"{self.name}: {self.height}cm, {self.start_age} days old"
 
 
 if __name__ == "__main__":
@@ -47,7 +47,7 @@ if __name__ == "__main__":
             print(rose.get_info())
         if day < 7:
             rose.grow(1)
-            rose.update_age()
+            rose.age()
 
     total_height = rose.height - rose.start_height
     print(f"Growth this week: + {total_height}cm")

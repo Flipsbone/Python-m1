@@ -10,7 +10,7 @@ class Plant:
         height (int): The height in centimeters.
         growth (int): The growth rate in centimeters per day.
     """
-    def __init__(self, name: str, height: int, growth: int):
+    def __init__(self, name: str, height: int = 0, growth: int = 0):
         """Initialize plant and set initial values through secure methods.
         Args:
             name (str): The species name of the plant.
@@ -18,9 +18,7 @@ class Plant:
             growth (int): The growth rate in centimeters per day.
         """
         self.name = name.capitalize()
-        self.__height = 0
         self.set_height(height)
-        self.__growth = 0
         self.set_growth(growth)
 
     def set_height(self, height: int) -> None:
@@ -28,12 +26,7 @@ class Plant:
         Args:
             height (int): The height in centimeters.
         """
-        if height < 0:
-            print(
-                "Invalid operation attempted: "
-                f"height {height}cm [REJECTED]")
-            print("Security: Negative height rejected\n")
-        else:
+        if height >= 0:
             self.__height = height
 
     def get_height(self) -> int:
@@ -45,12 +38,7 @@ class Plant:
         Args:
             growth (int): The growth rate in centimeters per day.
         """
-        if growth < 0:
-            print(
-                "Invalid operation attempted: "
-                f"growth {growth}cm [REJECTED]")
-            print("Security: Negative growth rejected\n")
-        else:
+        if growth >= 0:
             self.__growth = growth
 
     def get_growth(self) -> int:
@@ -171,7 +159,8 @@ class GardenManager:
         if garden_name not in self.gardens:
             self.gardens[garden_name] = []
         self.gardens[garden_name].append(plants)
-        print(f"Added {plants.name} to {garden_name}'s garden")
+        if garden_name == "Alice":
+            print(f"Added {plants.name} to {garden_name}'s garden")
         self.stats.update(plants)
 
     def display_garden(self, garden_name: str) -> None:
@@ -233,6 +222,15 @@ class GardenManager:
         return new_manager
 
 
+def show_manager_status(manager: GardenManager) -> None:
+    """
+    Display a summary of the gardens managed by a GardenManager instance.
+        Args:
+            manager (GardenManager): An instance of the GardenManager class.
+    """
+    print(f"Total gardens managed: {len(manager.gardens)}")
+
+
 if __name__ == "__main__":
     print("=== Garden Management System Demo ===\n")
     garden_1 = GardenManager("garden")
@@ -256,4 +254,4 @@ if __name__ == "__main__":
     score_alice = garden_1.calculate_garden_score("Alice")
     score_bob = garden_1.calculate_garden_score("Bob")
     print(f"Garden scores - Alice: {score_alice}, Bob: {score_bob}")
-    print(f"Total gardens managed: {len(garden_1.gardens)}")
+    show_manager_status(garden_1)

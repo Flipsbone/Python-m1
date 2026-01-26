@@ -1,6 +1,4 @@
 #!/usr/bin/env python3
-"""Module introducing basic garden plant information."""
-
 
 if __name__ == "__main__":
     print("=== Welcome to My Garden ===")
