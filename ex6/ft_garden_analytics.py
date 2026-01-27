@@ -10,7 +10,7 @@ class Plant:
         height (int): The height in centimeters.
         growth (int): The growth rate in centimeters per day.
     """
-    def __init__(self, name: str, height: int = 0, growth: int = 0):
+    def __init__(self, name: str, height: int = 0, growth: int = 0) -> None:
         """Initialize plant and set initial values through secure methods.
         Args:
             name (str): The species name of the plant.
@@ -101,12 +101,12 @@ class GardenManager:
     """
     nb_gardens = 0
 
-    def __init__(self, name: str):
+    def __init__(self, name: str) -> None:
         """Initialize garden manager with a name.
         Args:
             name (str): The name of the garden manager.
             """
-        self.gardens = {}
+        self.gardens: dict[str, list[Plant]] = {}
         self.name = name
         self.stats = self.GardenStats()
         GardenManager.nb_gardens += 1
@@ -119,7 +119,7 @@ class GardenManager:
             total_growth (int): Cumulative growth of all plants.
             plant_type (dict): Counts of different plant types.
         """
-        def __init__(self):
+        def __init__(self) -> None:
             """Initialize garden statistics."""
             self.count = 0
             self.total_growth = 0
@@ -196,7 +196,8 @@ class GardenManager:
                     total_score += plant.prize_point * 4
         return total_score
 
-    def simulate_growth(plant_list: list, garden_name: str) -> None:
+    def simulate_growth(  # type: ignore[misc]
+            plant_list: list[Plant], garden_name: str) -> None:
         """
         Simulate growth for all plants in a garden.
             Args:
@@ -210,7 +211,8 @@ class GardenManager:
             print(f"{plant.name} grew {plant.get_growth()}cm")
     simulate_growth = staticmethod(simulate_growth)
 
-    def create_garden_network(cls) -> 'GardenManager':
+    def create_garden_network(  # type: ignore[misc]
+            cls: type['GardenManager']) -> 'GardenManager':
         """
         Create a new garden manager with a default garden.
         Returns:
@@ -219,7 +221,8 @@ class GardenManager:
         new_manager = cls("Global Garden Network")
         new_manager.gardens["North"] = []
         return new_manager
-    create_garden_network = classmethod(create_garden_network)
+    create_garden_network = classmethod(
+        create_garden_network)  # type: ignore[assignment]
 
 
 def show_manager_status(manager: GardenManager) -> None:
@@ -241,7 +244,7 @@ if __name__ == "__main__":
     garden_1.add_plant("Alice", oak)
     garden_1.add_plant("Alice", rose)
     garden_1.add_plant("Alice", sunflower)
-    garden_1.simulate_growth(garden_1.gardens["Alice"], "Alice")
+    GardenManager.simulate_growth(garden_1.gardens["Alice"], "Alice")
     garden_1.display_garden("Alice")
     garden_1.stats.display()
 
