@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""This module defines a Plant class and demonstrates creating multiple plant
-instances using a list comprehension."""
+"""Module providing a factory function to create Plant instances."""
 
 
 class Plant:
@@ -23,25 +22,29 @@ class Plant:
         self.age = age
 
 
-def ft_plant_factory(name: str, height: int, age: int) -> Plant:
+def ft_plant_factory(name: str) -> Plant:
+    """Factory function to create Plant instances based on species name.
+    Args:
+        name (str): The species name of the plant.
+    Returns:
+        Plant: A new Plant instance with predefined attributes.
+    """
+    plant_dictionnary = {
+        "Rose": (25, 30),
+        "Oak": (200, 365),
+        "Cactus": (5, 90),
+        "Sunflower": (80, 45),
+        "Fern": (15, 120),
+    }
+    height, age = plant_dictionnary.get(name, (0, 0))
     return Plant(name, height, age)
 
 
 if __name__ == "__main__":
-    garden = [
-        ("Rose", 25, 30),
-        ("Oak", 200, 365),
-        ("Cactus", 5, 90),
-        ("Sunflower", 80, 45),
-        ("Fern", 15, 120),
-    ]
-
-    total_len = len(garden)
-    plants = [
-        ft_plant_factory(name, height, age) for name, height, age in garden
-        ]
+    plants_names = ["Rose", "Oak", "Cactus", "Sunflower", "Fern"]
+    plants = [ft_plant_factory(name) for name in plants_names]
     print("=== Plant Factory Output ===")
-    for i in range(total_len):
-        print(f"Created: {plants[i].name} ({plants[i].height}cm, "
-              f"{plants[i].age} days)")
-    print("\nTotal plants created:", total_len)
+    for plant in plants:
+        print(f"Created: {plant.name} ({plant.height}cm, "
+              f"{plant.age} days)")
+    print("\nTotal plants created:", len(plants))
