@@ -18,6 +18,8 @@ class Plant:
             age (int): The age in days.
         """
         self.name = name.capitalize()
+        self.__height: int = 0
+        self.__age: int = 0
         self.set_height(height)
         self.set_age(age)
 

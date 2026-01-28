@@ -18,6 +18,8 @@ class Plant:
             growth (int): The growth rate in centimeters per day.
         """
         self.name = name.capitalize()
+        self.__height: int = 0
+        self.__age: int = 0
         self.set_height(height)
         self.set_growth(growth)
 
