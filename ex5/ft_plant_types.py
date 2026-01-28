@@ -190,7 +190,7 @@ class Vegetable(Plant):
 
 
 if __name__ == "__main__":
-    print("===  Garden Plant Types ===\n")
+    print("=== Garden Plant Types ===\n")
     garden_center = [
         Flower("rose", 25, 30, "red"),
         Tree("oak", 500, 1825, 50),
